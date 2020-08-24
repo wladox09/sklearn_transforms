@@ -17,8 +17,6 @@ class DropColumns(BaseEstimator, TransformerMixin):
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class SimpleImputerMean(BaseEstimator, TransformerMixin):
-    def __init__(self, columns):
-        self.columns = columns
     def fit(self, X, y=None):
         return self
     def transform(self, X):
