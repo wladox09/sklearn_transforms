@@ -22,7 +22,7 @@ class SimpleImputerMean(BaseEstimator, TransformerMixin):
     def transform(self, X):
         # Primero copiamos el dataframe de entrada 'X' de entrada
         data = X.copy()
-        data_target = data_copy.OBJETIVO
+        data_target = data.OBJETIVO
         data_predictors = data.drop(['OBJETIVO'], axis=1)
         # predictores numéricos.. 
         data_numeric_predictors = data_predictors.select_dtypes(exclude=['object'])
