@@ -1,6 +1,7 @@
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils import resample
 import pandas as pd
+import numpy as np
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
@@ -30,5 +31,5 @@ class BalancedDataset(BaseEstimator, TransformerMixin):
                                  replace=True,
                                  n_samples=8000,
                                  random_state=123)
-        data_upsampled = pd.concat([data, data_minority])
+        data_upsampled = np.concatenate(data, data_minority.to_numpy())
         return data_upsampled
