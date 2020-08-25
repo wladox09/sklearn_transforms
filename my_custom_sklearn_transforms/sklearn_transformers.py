@@ -1,5 +1,5 @@
 from sklearn.base import BaseEstimator, TransformerMixin
-
+from sklearn.utils import resample
 
 # All sklearn Transforms must have the `transform` and `fit` methods
 class DropColumns(BaseEstimator, TransformerMixin):
@@ -14,22 +14,3 @@ class DropColumns(BaseEstimator, TransformerMixin):
         data = X.copy()
         # Retornamos um novo dataframe sem as colunas indesejadas
         return data.drop(labels=self.columns, axis='columns')
-
-# All sklearn Transforms must have the `transform` and `fit` methods
-class SimpleImputerMean(BaseEstimator, TransformerMixin):
-    def fit(self, X, y=None):
-        return self
-    def transform(self, X):
-        # Primero copiamos el dataframe de entrada 'X' de entrada
-        data = X.copy()
-        data_target = data.OBJETIVO
-        data_predictors = data.drop(['OBJETIVO'], axis=1)
-        # predictores numéricos.. 
-        data_numeric_predictors = data_predictors.select_dtypes(exclude=['object'])
-        # Imputation
-        my_imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
-        data_final = pd.DataFrame(my_imputer.fit_transform(data_numeric_predictors))
-        data_final.columns = data_predictors.columns
-        # Reintegrando el target
-        data_final['OBJETIVO'] = data_target
-        return data_final
