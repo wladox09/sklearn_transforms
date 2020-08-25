@@ -31,8 +31,5 @@ class BalancedDataset(BaseEstimator, TransformerMixin):
                                  replace=True,
                                  n_samples=8000,
                                  random_state=123)
-        print(data)
-        print('----')
-        print(data_minority.values)
-        #data_upsampled = np.concatenate([data, data_minority.values], axis=0)
+        data_upsampled = np.concatenate([data, data_minority.values], axis=0)
         return data_upsampled
